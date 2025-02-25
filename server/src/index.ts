@@ -3,20 +3,24 @@ import "dotenv/config";
 import appConfig from './config/app.config';
 import {  handleError } from './middleware/handleError';
 import cookieParser from 'cookie-parser';
-import { asyncHandle } from './middleware/asyncHandle';
+import router from './routes/index.routes';
+import cors from "cors"
+import dbConnect from './config/db';
 const app = express();
+app.use(cors({
+    origin: appConfig.CLIENT_URL,
+    credentials:true
+}))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.get("/", (req, res,next) => {
-    res.send("Hello World");
-});
+dbConnect()
+app.get("/",(req,res) => {
+    res.send(appConfig.CLIENT_URL)
+})
 
-app.get("/error",asyncHandle(async(req, res, next) => {
-    throw new Error("Error");
-}))
-
+app.use("/api/v1",router)
 app.use(handleError)
 
 app.listen(appConfig.PORT, () => {
