@@ -3,6 +3,7 @@ import { Noto_Sans } from "next/font/google";
 import "./globals.css";
 import { getLocale, getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
+import AuthContext from "@/contexts/AuthContext";
 
 const noto_Sans = Noto_Sans({ subsets: ["latin"] });
 
@@ -23,7 +24,7 @@ export default async function RootLayout({
     <html className={noto_Sans.className} lang={locale}>
       <body>
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <AuthContext>{children}</AuthContext>
         </NextIntlClientProvider>
       </body>
     </html>

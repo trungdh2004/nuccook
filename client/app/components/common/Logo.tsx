@@ -7,7 +7,7 @@ const Logo = ({
   width = 40,
   height = 40,
 }: {
-  className: string;
+  className?: string;
   width?: number;
   height?: number;
 }) => {

@@ -4,7 +4,6 @@
 
 @layer base {
   :root {
-
     --background: 0 0% 100%;
 
     --foreground: 240 10% 3.9%;
@@ -53,10 +52,9 @@
 
     --chart-5: 27 87% 67%;
 
-    --radius: 0.5rem
+    --radius: 0.5rem;
   }
   .dark {
-
     --background: 240 10% 3.9%;
 
     --foreground: 0 0% 98%;
@@ -103,7 +101,7 @@
 
     --chart-4: 280 65% 60%;
 
-    --chart-5: 340 75% 55%
+    --chart-5: 340 75% 55%;
   }
 }
 
@@ -114,4 +112,27 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.backgroundGradient {
+  background-image: radial-gradient(#ffffff40, #fff0 40%),
+    radial-gradient(
+      hsl(44, 100%, 66%) 30%,
+      hsl(338, 68%, 65%),
+      hsla(338, 68%, 65%, 0.4) 41%,
+      transparent 52%
+    ),
+    radial-gradient(hsl(272, 100%, 60%) 37%, transparent 46%),
+    linear-gradient(155deg, transparent 65%, hsl(142, 70%, 49%) 95%),
+    linear-gradient(45deg, #0065e0, #0f8bff);
+    opacity: 8;
 }
